@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Shopping Cart | CodeAlpha Store</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f6f8;
+            color: #222;
+        }
+
+        header {
+            background: #111827;
+            color: white;
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 26px;
+        }
+
+        .back {
+            background: white;
+            color: #111827;
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 45px auto;
+            padding: 0 20px;
+        }
+
+        .container h2 {
+            font-size: 32px;
+            margin-bottom: 25px;
+        }
+
+        /* CART ITEM */
+        .cart-item {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+
+            display: flex;
+            align-items: center;
+            gap: 25px;
+
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        /* PRODUCT IMAGE */
+        .cart-image {
+            width: 160px;
+            height: 150px;
+            background: #f3f4f6;
+            border-radius: 12px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .cart-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .no-image {
+            font-size: 55px;
+        }
+
+        /* PRODUCT DETAILS */
+        .item-details {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .item-details h3 {
+            font-size: 23px;
+            margin-bottom: 10px;
+        }
+
+        .item-details p {
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        /* QUANTITY */
+        .quantity {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .quantity a {
+            width: 32px;
+            height: 32px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #f3f4f6;
+            border-radius: 7px;
+
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .quantity a:hover {
+            background: #e5e7eb;
+        }
+
+        .quantity strong {
+            font-size: 18px;
+            min-width: 25px;
+            text-align: center;
+        }
+
+        /* REMOVE BUTTON */
+        .remove {
+            display: inline-block;
+
+            background: #dc2626;
+            color: white;
+
+            text-decoration: none;
+            border: none;
+
+            padding: 10px 16px;
+            border-radius: 7px;
+
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .remove:hover {
+            background: #b91c1c;
+        }
+
+        /* PRICE */
+        .item-price {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        /* SUMMARY */
+        .cart-summary {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+
+            margin-top: 30px;
+
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .total {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .checkout {
+            display: inline-block;
+
+            background: #111827;
+            color: white;
+
+            text-decoration: none;
+
+            padding: 14px 28px;
+            border-radius: 8px;
+
+            font-size: 17px;
+        }
+
+        .checkout:hover {
+            background: #374151;
+        }
+
+        /* EMPTY CART */
+        .empty-cart {
+            background: white;
+            padding: 60px 20px;
+
+            border-radius: 15px;
+
+            text-align: center;
+
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .empty-cart h3 {
+            font-size: 26px;
+            margin-bottom: 12px;
+        }
+
+        .empty-cart p {
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        .shop-now {
+            display: inline-block;
+
+            background: #111827;
+            color: white;
+
+            text-decoration: none;
+
+            padding: 12px 25px;
+            border-radius: 8px;
+        }
+
+        /* TABLET */
+        @media (max-width: 800px) {
+
+            .cart-item {
+                align-items: flex-start;
+            }
+
+            .cart-image {
+                width: 130px;
+                height: 130px;
+            }
+
+            .cart-summary {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+        }
+
+        /* MOBILE */
+        @media (max-width: 600px) {
+
+            header {
+                padding: 18px 5%;
+            }
+
+            header h1 {
+                font-size: 20px;
+            }
+
+            .back {
+                padding: 8px 12px;
+                font-size: 13px;
+            }
+
+            .container {
+                margin: 30px auto;
+                padding: 0 15px;
+            }
+
+            .container h2 {
+                font-size: 26px;
+            }
+
+            .cart-item {
+                flex-direction: column;
+                align-items: stretch;
+                padding: 20px;
+            }
+
+            .cart-image {
+                width: 100%;
+                height: 220px;
+            }
+
+            .remove {
+                width: 100%;
+                text-align: center;
+            }
+
+            .checkout {
+                width: 100%;
+                text-align: center;
+            }
+
+            .cart-summary {
+                padding: 20px;
+            }
+
+            .total {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <h1>🛒 CodeAlpha Store</h1>
+
+    <a href="/" class="back">
+        ← Continue Shopping
+    </a>
+
+</header>
+
+
+<div class="container">
+
+    <h2>🛍️ Your Shopping Cart</h2>
+
+
+    {% if cart_items %}
+
+        {% for item in cart_items %}
+
+        <div class="cart-item">
+
+            <!-- PRODUCT IMAGE -->
+            <div class="cart-image">
+
+                {% if item.product.image %}
+
+                    <img
+                        src="{{ item.product.image }}"
+                        alt="{{ item.product.name }}"
+                    >
+
+                {% else %}
+
+                    <div class="no-image">🛍️</div>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- PRODUCT DETAILS -->
+            <div class="item-details">
+
+                <h3>
+                    {{ item.product.name }}
+                </h3>
+
+                <p>
+                    {{ item.product.description }}
+                </p>
+
+
+                <!-- PRICE -->
+                <div class="item-price">
+                    ₹{{ item.product.price }}
+                </div>
+
+
+                <!-- QUANTITY -->
+                <div class="quantity">
+
+                    <span>Quantity:</span>
+
+                    <a href="{% url 'decrease_quantity' item.id %}">
+                        ➖
+                    </a>
+
+                    <strong>
+                        {{ item.quantity }}
+                    </strong>
+
+                    <a href="{% url 'increase_quantity' item.id %}">
+                        ➕
+                    </a>
+
+                </div>
+
+
+                <!-- REMOVE -->
+                <a
+                    href="{% url 'remove_from_cart' item.id %}"
+                    class="remove"
+                >
+                    🗑️ Remove
+                </a>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+
+        <!-- CART SUMMARY -->
+        <div class="cart-summary">
+
+            <div class="total">
+                Total: ₹{{ total }}
+            </div>
+
+            <a
+                href="{% url 'checkout' %}"
+                class="checkout"
+            >
+                📦 Proceed to Checkout
+            </a>
+
+        </div>
+
+
+    {% else %}
+
+        <!-- EMPTY CART -->
+        <div class="empty-cart">
+
+            <h3>
+                Your cart is empty 🛒
+            </h3>
+
+            <p>
+                You haven't added any products yet.
+            </p>
+
+            <a
+                href="/"
+                class="shop-now"
+            >
+                Start Shopping
+            </a>
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>

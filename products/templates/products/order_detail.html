@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Order #{{ order.id }} | CodeAlpha Store
+    </title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+
+        body {
+            background: #f5f7fb;
+            color: #111827;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            background: #111827;
+            color: white;
+
+            padding: 18px 7%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            box-shadow:
+                0 3px 15px rgba(0,0,0,0.15);
+        }
+
+
+        header h1 {
+            font-size: 25px;
+        }
+
+
+        .back {
+            background: white;
+            color: #111827;
+
+            text-decoration: none;
+
+            padding: 10px 18px;
+
+            border-radius: 25px;
+
+            font-weight: bold;
+        }
+
+
+        .back:hover {
+            background: #e5e7eb;
+        }
+
+
+        /* =========================
+           CONTAINER
+        ========================= */
+
+        .container {
+            max-width: 1100px;
+
+            margin: 40px auto;
+
+            padding: 0 20px;
+        }
+
+
+        /* =========================
+           TOP
+        ========================= */
+
+        .page-top {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 25px;
+        }
+
+
+        .page-top h2 {
+            font-size: 32px;
+        }
+
+
+        .order-date {
+            color: #6b7280;
+
+            font-size: 14px;
+
+            margin-top: 6px;
+        }
+
+
+        /* =========================
+           STATUS
+        ========================= */
+
+        .status {
+            padding: 9px 17px;
+
+            border-radius: 25px;
+
+            font-weight: bold;
+
+            font-size: 14px;
+
+            background: #fef3c7;
+
+            color: #92400e;
+        }
+
+
+        .confirmed {
+            background: #dbeafe;
+            color: #1d4ed8;
+        }
+
+
+        .shipped {
+            background: #e0e7ff;
+            color: #4338ca;
+        }
+
+
+        .delivered {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+
+        .cancelled {
+            background: #fee2e2;
+            color: #b91c1c;
+        }
+
+
+        /* =========================
+           BOX
+        ========================= */
+
+        .box {
+            background: white;
+
+            border-radius: 16px;
+
+            padding: 25px;
+
+            margin-bottom: 22px;
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,0.06);
+        }
+
+
+        .box h3 {
+            font-size: 21px;
+
+            margin-bottom: 20px;
+        }
+
+
+        /* =========================
+           PRODUCTS
+        ========================= */
+
+        .order-item {
+            display: flex;
+
+            align-items: center;
+
+            gap: 18px;
+
+            padding: 17px 0;
+
+            border-bottom: 1px solid #eee;
+        }
+
+
+        .order-item:last-child {
+            border-bottom: none;
+        }
+
+
+        .product-image {
+            width: 90px;
+
+            height: 80px;
+
+            background: #f3f4f6;
+
+            border-radius: 10px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            overflow: hidden;
+
+            flex-shrink: 0;
+        }
+
+
+        .product-image img {
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: contain;
+        }
+
+
+        .no-image {
+            font-size: 35px;
+        }
+
+
+        .item-info {
+            flex: 1;
+        }
+
+
+        .item-info h4 {
+            font-size: 18px;
+
+            margin-bottom: 6px;
+        }
+
+
+        .item-info p {
+            color: #6b7280;
+
+            font-size: 14px;
+        }
+
+
+        .item-price {
+            text-align: right;
+        }
+
+
+        .item-price .unit-price {
+            color: #6b7280;
+
+            font-size: 13px;
+
+            margin-bottom: 5px;
+        }
+
+
+        .item-price .subtotal {
+            font-size: 18px;
+
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           TOTAL
+        ========================= */
+
+        .total-row {
+            border-top: 2px solid #eee;
+
+            margin-top: 18px;
+
+            padding-top: 18px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+        }
+
+
+        .total-label {
+            font-size: 18px;
+
+            font-weight: bold;
+        }
+
+
+        .total {
+            font-size: 27px;
+
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           DETAILS GRID
+        ========================= */
+
+        .details-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 15px;
+        }
+
+
+        .detail {
+            background: #f9fafb;
+
+            padding: 14px 16px;
+
+            border-radius: 9px;
+
+            color: #6b7280;
+
+            font-size: 14px;
+        }
+
+
+        .detail strong {
+            display: block;
+
+            color: #111827;
+
+            margin-bottom: 5px;
+        }
+
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+
+        /* =========================
+           ACTIONS
+        ========================= */
+
+        .actions {
+            display: flex;
+
+            gap: 10px;
+
+            margin-top: 5px;
+        }
+
+
+        .btn {
+            display: inline-block;
+
+            text-decoration: none;
+
+            padding: 12px 20px;
+
+            border-radius: 8px;
+
+            font-weight: bold;
+
+            font-size: 14px;
+        }
+
+
+        .primary {
+            background: #111827;
+
+            color: white;
+        }
+
+
+        .primary:hover {
+            background: #374151;
+        }
+
+
+        .danger {
+            background: #fee2e2;
+
+            color: #b91c1c;
+        }
+
+
+        .danger:hover {
+            background: #fecaca;
+        }
+
+
+        /* =========================
+           EMPTY
+        ========================= */
+
+        .no-items {
+            text-align: center;
+
+            padding: 35px 10px;
+
+            color: #6b7280;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            header {
+                flex-direction: column;
+
+                gap: 15px;
+
+                text-align: center;
+            }
+
+
+            .page-top {
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 15px;
+            }
+
+
+            .page-top h2 {
+                font-size: 27px;
+            }
+
+
+            .order-item {
+                align-items: flex-start;
+
+                flex-wrap: wrap;
+            }
+
+
+            .item-price {
+                width: 100%;
+
+                text-align: left;
+
+                margin-left: 108px;
+            }
+
+
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .full-width {
+                grid-column: auto;
+            }
+
+
+            .total-row {
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 7px;
+            }
+
+
+            .actions {
+                flex-direction: column;
+            }
+
+
+            .btn {
+                text-align: center;
+
+                width: 100%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+    <h1>
+        🛒 CodeAlpha Store
+    </h1>
+
+
+    <a
+        href="{% url 'my_orders' %}"
+        class="back"
+    >
+        ← My Orders
+    </a>
+
+</header>
+
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<div class="container">
+
+
+    <!-- TOP -->
+
+    <div class="page-top">
+
+
+        <div>
+
+            <h2>
+                📦 Order #{{ order.id }}
+            </h2>
+
+
+            <div class="order-date">
+
+                📅
+                {{ order.created_at|date:"d M Y, h:i A" }}
+
+            </div>
+
+        </div>
+
+
+
+        <!-- STATUS -->
+
+        {% if order.status == "Confirmed" %}
+
+            <div class="status confirmed">
+                ✓ Confirmed
+            </div>
+
+
+        {% elif order.status == "Shipped" %}
+
+            <div class="status shipped">
+                🚚 Shipped
+            </div>
+
+
+        {% elif order.status == "Delivered" %}
+
+            <div class="status delivered">
+                ✓ Delivered
+            </div>
+
+
+        {% elif order.status == "Cancelled" %}
+
+            <div class="status cancelled">
+                ✕ Cancelled
+            </div>
+
+
+        {% else %}
+
+            <div class="status">
+                ⏳ Pending
+            </div>
+
+        {% endif %}
+
+
+    </div>
+
+
+
+    <!-- =========================
+         ORDER ITEMS
+    ========================= -->
+
+    <div class="box">
+
+
+        <h3>
+            🛍️ Ordered Products
+        </h3>
+
+
+        {% for item in order_items %}
+
+
+            <div class="order-item">
+
+
+                <!-- IMAGE -->
+
+                <div class="product-image">
+
+
+                    {% if item.product and item.product.image %}
+
+                        <img
+                            src="{{ item.product.image }}"
+                            alt="{{ item.product_name }}"
+                        >
+
+                    {% else %}
+
+                        <div class="no-image">
+                            🛍️
+                        </div>
+
+                    {% endif %}
+
+
+                </div>
+
+
+
+                <!-- INFO -->
+
+                <div class="item-info">
+
+
+                    <h4>
+                        {{ item.product_name }}
+                    </h4>
+
+
+                    <p>
+                        Quantity:
+                        <strong>
+                            {{ item.quantity }}
+                        </strong>
+                    </p>
+
+
+                </div>
+
+
+
+                <!-- PRICE -->
+
+                <div class="item-price">
+
+
+                    <div class="unit-price">
+
+                        ₹{{ item.price }}
+                        ×
+                        {{ item.quantity }}
+
+                    </div>
+
+
+                    <div class="subtotal">
+
+                        ₹{{ item.subtotal }}
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        {% empty %}
+
+
+            <div class="no-items">
+
+                No product details available.
+
+            </div>
+
+
+        {% endfor %}
+
+
+
+        <!-- TOTAL -->
+
+        <div class="total-row">
+
+
+            <div class="total-label">
+
+                Total Amount
+
+            </div>
+
+
+            <div class="total">
+
+                ₹{{ order.total_amount }}
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =========================
+         CUSTOMER DETAILS
+    ========================= -->
+
+    <div class="box">
+
+
+        <h3>
+            👤 Customer Details
+        </h3>
+
+
+        <div class="details-grid">
+
+
+            <div class="detail">
+
+                <strong>
+                    Full Name
+                </strong>
+
+                {{ order.customer_name }}
+
+            </div>
+
+
+            <div class="detail">
+
+                <strong>
+                    Email
+                </strong>
+
+                {{ order.email }}
+
+            </div>
+
+
+            <div class="detail">
+
+                <strong>
+                    Phone
+                </strong>
+
+                {{ order.phone }}
+
+            </div>
+
+
+            <div class="detail">
+
+                <strong>
+                    Payment Method
+                </strong>
+
+                {{ order.payment_method }}
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =========================
+         DELIVERY DETAILS
+    ========================= -->
+
+    <div class="box">
+
+
+        <h3>
+            🏠 Delivery Details
+        </h3>
+
+
+        <div class="details-grid">
+
+
+            <div class="detail full-width">
+
+                <strong>
+                    Address
+                </strong>
+
+                {{ order.address }}
+
+            </div>
+
+
+            <div class="detail">
+
+                <strong>
+                    City
+                </strong>
+
+                {{ order.city }}
+
+            </div>
+
+
+            <div class="detail">
+
+                <strong>
+                    Pincode
+                </strong>
+
+                {{ order.pincode }}
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =========================
+         ACTIONS
+    ========================= -->
+
+    <div class="actions">
+
+
+        <a
+            href="{% url 'my_orders' %}"
+            class="btn primary"
+        >
+            ← Back to My Orders
+        </a>
+
+
+        {% if order.status == "Pending" or order.status == "Confirmed" %}
+
+
+            <form
+                method="POST"
+                action="{% url 'cancel_order' order.id %}"
+                style="margin: 0;"
+            >
+
+                {% csrf_token %}
+
+                <button
+                    type="submit"
+                    class="btn danger"
+                    onclick="return confirm('Are you sure you want to cancel this order?');"
+                >
+                    ✕ Cancel Order
+                </button>
+
+            </form>
+
+
+        {% endif %}
+
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Order Successful | CodeAlpha Store</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f6f8;
+            color: #222;
+        }
+
+        header {
+            background: #111827;
+            color: white;
+            padding: 20px 7%;
+        }
+
+        header h1 {
+            font-size: 26px;
+        }
+
+        .success-container {
+            max-width: 700px;
+            margin: 70px auto;
+            padding: 20px;
+        }
+
+        .success-box {
+            background: white;
+            padding: 45px;
+            border-radius: 18px;
+            text-align: center;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+        }
+
+        .success-icon {
+            font-size: 70px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .message {
+            color: #666;
+            font-size: 17px;
+            margin-bottom: 30px;
+        }
+
+        .order-info {
+            background: #f3f4f6;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: left;
+            margin-bottom: 30px;
+        }
+
+        .order-info p {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+        .order-info strong {
+            color: #111827;
+        }
+
+        .home-btn {
+            display: inline-block;
+            background: #111827;
+            color: white;
+            text-decoration: none;
+            padding: 13px 25px;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .home-btn:hover {
+            background: #374151;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>🛒 CodeAlpha Store</h1>
+</header>
+
+
+<div class="success-container">
+
+    <div class="success-box">
+
+        <div class="success-icon">
+            ✅
+        </div>
+
+        <h2>Order Placed Successfully!</h2>
+
+        <p class="message">
+            Thank you for shopping with CodeAlpha Store.
+            Your order has been received successfully.
+        </p>
+
+
+        <div class="order-info">
+
+            <p>
+                <strong>Order ID:</strong>
+                #{{ order.id }}
+            </p>
+
+            <p>
+                <strong>Name:</strong>
+                {{ order.customer_name }}
+            </p>
+
+            <p>
+                <strong>Email:</strong>
+                {{ order.email }}
+            </p>
+
+            <p>
+                <strong>Phone:</strong>
+                {{ order.phone }}
+            </p>
+
+            <p>
+                <strong>City:</strong>
+                {{ order.city }}
+            </p>
+
+            <p>
+                <strong>Pincode:</strong>
+                {{ order.pincode }}
+            </p>
+
+            <p>
+                <strong>Payment:</strong>
+                {{ order.payment_method }}
+            </p>
+
+            <p>
+                <strong>Total Amount:</strong>
+                ₹{{ order.total_amount }}
+            </p>
+
+        </div>
+
+
+        <a href="{% url 'home' %}" class="home-btn">
+            🏠 Continue Shopping
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html> 

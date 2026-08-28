@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Wishlist | CodeAlpha Store</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+
+        body {
+            background: #f5f7fb;
+            color: #111827;
+        }
+
+
+        header {
+            background: #111827;
+
+            color: white;
+
+            padding: 18px 7%;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+        }
+
+
+        .logo {
+            font-size: 24px;
+
+            font-weight: bold;
+        }
+
+
+        .header-links {
+            display: flex;
+
+            gap: 10px;
+        }
+
+
+        .header-btn {
+            background: white;
+
+            color: #111827;
+
+            text-decoration: none;
+
+            padding: 10px 16px;
+
+            border-radius: 22px;
+
+            font-weight: bold;
+        }
+
+
+        .container {
+            max-width: 1150px;
+
+            margin: 40px auto;
+
+            padding: 0 20px;
+        }
+
+
+        .page-header {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 25px;
+        }
+
+
+        .page-header h2 {
+            font-size: 32px;
+        }
+
+
+        .count {
+            color: #6b7280;
+
+            font-weight: bold;
+        }
+
+
+        .wishlist-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(250px, 1fr)
+                );
+
+            gap: 25px;
+        }
+
+
+        .wishlist-card {
+            background: white;
+
+            border-radius: 16px;
+
+            padding: 18px;
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,0.07);
+
+            transition: 0.25s;
+
+            position: relative;
+        }
+
+
+        .wishlist-card:hover {
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 12px 30px rgba(0,0,0,0.12);
+        }
+
+
+        .product-image {
+            height: 210px;
+
+            background: #f3f4f6;
+
+            border-radius: 12px;
+
+            overflow: hidden;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            margin-bottom: 18px;
+        }
+
+
+        .product-image img {
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: contain;
+        }
+
+
+        .no-image {
+            font-size: 55px;
+        }
+
+
+        .product-name {
+            font-size: 20px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .product-name a {
+            color: #111827;
+
+            text-decoration: none;
+        }
+
+
+        .description {
+            color: #6b7280;
+
+            font-size: 14px;
+
+            line-height: 1.5;
+
+            min-height: 42px;
+
+            margin-bottom: 12px;
+        }
+
+
+        .price {
+            font-size: 23px;
+
+            font-weight: bold;
+
+            margin-bottom: 15px;
+        }
+
+
+        .actions {
+            display: flex;
+
+            gap: 8px;
+        }
+
+
+        .cart-btn {
+            flex: 1;
+
+            background: #111827;
+
+            color: white;
+
+            text-decoration: none;
+
+            text-align: center;
+
+            padding: 12px;
+
+            border-radius: 8px;
+
+            font-weight: bold;
+        }
+
+
+        .remove-btn {
+            background: #fee2e2;
+
+            color: #b91c1c;
+
+            text-decoration: none;
+
+            padding: 12px 15px;
+
+            border-radius: 8px;
+
+            font-weight: bold;
+        }
+
+
+        .out-stock {
+            flex: 1;
+
+            background: #e5e7eb;
+
+            color: #6b7280;
+
+            text-align: center;
+
+            padding: 12px;
+
+            border-radius: 8px;
+
+            font-weight: bold;
+        }
+
+
+        .empty {
+            background: white;
+
+            padding: 70px 20px;
+
+            border-radius: 16px;
+
+            text-align: center;
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,0.06);
+        }
+
+
+        .empty-icon {
+            font-size: 65px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .empty h3 {
+            font-size: 27px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .empty p {
+            color: #6b7280;
+
+            margin-bottom: 25px;
+        }
+
+
+        .shop-btn {
+            display: inline-block;
+
+            background: #111827;
+
+            color: white;
+
+            text-decoration: none;
+
+            padding: 13px 24px;
+
+            border-radius: 8px;
+
+            font-weight: bold;
+        }
+
+
+        footer {
+            margin-top: 60px;
+
+            background: #111827;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 28px;
+        }
+
+
+        footer p {
+            color: #9ca3af;
+
+            margin-top: 6px;
+
+            font-size: 14px;
+        }
+
+
+        @media (max-width: 650px) {
+
+            header {
+                flex-direction: column;
+
+                gap: 15px;
+            }
+
+
+            .page-header {
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 8px;
+            }
+
+
+            .page-header h2 {
+                font-size: 27px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <div class="logo">
+        ❤️ CodeAlpha Store
+    </div>
+
+
+    <div class="header-links">
+
+        <a
+            href="{% url 'home' %}"
+            class="header-btn"
+        >
+            🏠 Home
+        </a>
+
+
+        <a
+            href="{% url 'cart' %}"
+            class="header-btn"
+        >
+            🛒 Cart {{ cart_count }}
+        </a>
+
+    </div>
+
+</header>
+
+
+
+<div class="container">
+
+
+    <div class="page-header">
+
+        <h2>
+            ❤️ My Wishlist
+        </h2>
+
+        <div class="count">
+
+            {{ wishlist_count }} item{{ wishlist_count|pluralize }}
+
+        </div>
+
+    </div>
+
+
+
+    {% if wishlist_items %}
+
+
+        <div class="wishlist-grid">
+
+
+            {% for item in wishlist_items %}
+
+
+                <div class="wishlist-card">
+
+
+                    <div class="product-image">
+
+
+                        {% if item.product.image %}
+
+                            <img
+                                src="{{ item.product.image }}"
+                                alt="{{ item.product.name }}"
+                            >
+
+                        {% else %}
+
+                            <div class="no-image">
+                                🛍️
+                            </div>
+
+                        {% endif %}
+
+
+                    </div>
+
+
+
+                    <h3 class="product-name">
+
+                        <a
+                            href="{% url 'product_detail' item.product.id %}"
+                        >
+
+                            {{ item.product.name }}
+
+                        </a>
+
+                    </h3>
+
+
+
+                    <p class="description">
+
+                        {{ item.product.description }}
+
+                    </p>
+
+
+
+                    <div class="price">
+
+                        ₹{{ item.product.price }}
+
+                    </div>
+
+
+
+                    <div class="actions">
+
+
+                        {% if item.product.stock > 0 %}
+
+                            <a
+                                href="{% url 'add_to_cart' item.product.id %}"
+                                class="cart-btn"
+                            >
+                                🛒 Add to Cart
+                            </a>
+
+                        {% else %}
+
+                            <div class="out-stock">
+                                Out of Stock
+                            </div>
+
+                        {% endif %}
+
+
+                        <a
+                            href="{% url 'remove_from_wishlist' item.product.id %}"
+                            class="remove-btn"
+                            title="Remove from wishlist"
+                        >
+                            💔
+                        </a>
+
+
+                    </div>
+
+
+                </div>
+
+
+            {% endfor %}
+
+
+        </div>
+
+
+    {% else %}
+
+
+        <div class="empty">
+
+
+            <div class="empty-icon">
+                ❤️
+            </div>
+
+
+            <h3>
+                Your Wishlist is Empty
+            </h3>
+
+
+            <p>
+                Save products you love here
+                and find them easily later.
+            </p>
+
+
+            <a
+                href="{% url 'home' %}"
+                class="shop-btn"
+            >
+                🛍️ Start Shopping
+            </a>
+
+
+        </div>
+
+
+    {% endif %}
+
+
+</div>
+
+
+
+<footer>
+
+    <h3>
+        🛒 CodeAlpha Store
+    </h3>
+
+    <p>
+        Smart & Simple Shopping
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>

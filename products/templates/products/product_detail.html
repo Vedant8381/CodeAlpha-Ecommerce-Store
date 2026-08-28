@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        {{ product.name }} | CodeAlpha Store
+    </title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+
+            font-family:
+                "Segoe UI",
+                Arial,
+                sans-serif;
+        }
+
+
+        body {
+            background: #f5f7fb;
+            color: #172033;
+        }
+
+
+        /* =====================================
+           HEADER
+        ===================================== */
+
+        header {
+
+            background: #111827;
+
+            color: white;
+
+            padding: 18px 7%;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            box-shadow:
+                0 3px 15px
+                rgba(0, 0, 0, 0.12);
+        }
+
+
+        header h1 {
+            font-size: 25px;
+            font-weight: 700;
+        }
+
+
+        .back {
+
+            color: white;
+
+            text-decoration: none;
+
+            background: #374151;
+
+            padding: 10px 18px;
+
+            border-radius: 8px;
+
+            font-size: 14px;
+
+            transition:
+                background 0.2s ease;
+        }
+
+
+        .back:hover {
+            background: #4b5563;
+        }
+
+
+        /* =====================================
+           MAIN CONTAINER
+        ===================================== */
+
+        .container {
+
+            max-width: 1150px;
+
+            margin: 45px auto;
+
+            padding: 0 20px;
+        }
+
+
+        /* =====================================
+           PRODUCT DETAIL
+        ===================================== */
+
+        .product-detail {
+
+            background: white;
+
+            border-radius: 18px;
+
+            padding: 35px;
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 45px;
+
+            box-shadow:
+                0 8px 30px
+                rgba(15, 23, 42, 0.08);
+
+            margin-bottom: 30px;
+        }
+
+
+        /* =====================================
+           PRODUCT IMAGE
+        ===================================== */
+
+        .product-image {
+
+            height: 450px;
+
+            background: #f3f4f6;
+
+            border-radius: 15px;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            overflow: hidden;
+        }
+
+
+        .product-image img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: contain;
+        }
+
+
+        .no-image {
+            font-size: 100px;
+        }
+
+
+        /* =====================================
+           PRODUCT DETAILS
+        ===================================== */
+
+        .details {
+            padding: 10px 0;
+        }
+
+
+        .details h2 {
+
+            font-size: 38px;
+
+            margin-bottom: 18px;
+
+            color: #111827;
+
+            line-height: 1.2;
+        }
+
+
+        .description {
+
+            color: #64748b;
+
+            font-size: 16px;
+
+            line-height: 1.7;
+
+            margin-bottom: 25px;
+        }
+
+
+        .price {
+
+            font-size: 32px;
+
+            font-weight: 700;
+
+            color: #111827;
+
+            margin-bottom: 15px;
+        }
+
+
+        /* =====================================
+           RATING SUMMARY
+        ===================================== */
+
+        .rating-summary {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            margin-bottom: 22px;
+
+            padding: 14px 16px;
+
+            background: #fffbeb;
+
+            border: 1px solid #fde68a;
+
+            border-radius: 10px;
+        }
+
+
+        .stars {
+
+            color: #f59e0b;
+
+            font-size: 21px;
+
+            letter-spacing: 2px;
+        }
+
+
+        .rating-text {
+
+            font-size: 15px;
+
+            font-weight: 600;
+
+            color: #374151;
+        }
+
+
+        .review-count {
+
+            color: #6b7280;
+
+            font-size: 14px;
+        }
+
+
+        /* =====================================
+           STOCK
+        ===================================== */
+
+        .stock {
+
+            display: inline-block;
+
+            margin-bottom: 25px;
+
+            padding: 9px 14px;
+
+            border-radius: 7px;
+
+            font-size: 14px;
+
+            font-weight: 600;
+        }
+
+
+        .in-stock {
+
+            color: #166534;
+
+            background: #dcfce7;
+        }
+
+
+        .low-stock {
+
+            color: #92400e;
+
+            background: #fef3c7;
+        }
+
+
+        .out-stock {
+
+            color: #b91c1c;
+
+            background: #fee2e2;
+        }
+
+
+        /* =====================================
+           ADD TO CART
+        ===================================== */
+
+        .add-cart {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-decoration: none;
+
+            border: none;
+
+            background: #111827;
+
+            color: white;
+
+            padding: 15px 30px;
+
+            border-radius: 9px;
+
+            font-size: 16px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.2s ease,
+                background 0.2s ease;
+        }
+
+
+        .add-cart:hover {
+
+            background: #374151;
+
+            transform:
+                translateY(-2px);
+        }
+
+
+        /* =====================================
+           REVIEWS SECTION
+        ===================================== */
+
+        .reviews-section {
+
+            background: white;
+
+            border-radius: 18px;
+
+            padding: 35px;
+
+            box-shadow:
+                0 8px 30px
+                rgba(15, 23, 42, 0.08);
+
+            margin-bottom: 50px;
+        }
+
+
+        .reviews-title {
+
+            font-size: 26px;
+
+            color: #111827;
+
+            margin-bottom: 25px;
+        }
+
+
+        /* =====================================
+           REVIEW FORM
+        ===================================== */
+
+        .review-form {
+
+            background: #f8fafc;
+
+            padding: 25px;
+
+            border-radius: 12px;
+
+            border:
+                1px solid
+                #e2e8f0;
+
+            margin-bottom: 35px;
+        }
+
+
+        .review-form h3 {
+
+            margin-bottom: 18px;
+
+            font-size: 19px;
+
+            color: #111827;
+        }
+
+
+        .form-group {
+
+            margin-bottom: 16px;
+        }
+
+
+        .form-group label {
+
+            display: block;
+
+            margin-bottom: 7px;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            color: #374151;
+        }
+
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+
+            width: 100%;
+
+            border:
+                1px solid
+                #d1d5db;
+
+            border-radius: 8px;
+
+            padding: 11px 13px;
+
+            font-size: 14px;
+
+            outline: none;
+
+            background: white;
+        }
+
+
+        .form-group textarea {
+
+            min-height: 110px;
+
+            resize: vertical;
+        }
+
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+
+            border-color: #111827;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(
+                    17,
+                    24,
+                    39,
+                    0.08
+                );
+        }
+
+
+        .submit-review {
+
+            border: none;
+
+            background: #0f766e;
+
+            color: white;
+
+            padding: 12px 22px;
+
+            border-radius: 8px;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+        }
+
+
+        .submit-review:hover {
+            background: #115e59;
+        }
+
+
+        /* =====================================
+           REVIEW CARD
+        ===================================== */
+
+        .review-card {
+
+            padding: 20px 0;
+
+            border-bottom:
+                1px solid
+                #e5e7eb;
+        }
+
+
+        .review-card:last-child {
+            border-bottom: none;
+        }
+
+
+        .review-top {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 10px;
+        }
+
+
+        .review-name {
+
+            font-size: 16px;
+
+            font-weight: 700;
+
+            color: #111827;
+        }
+
+
+        .review-stars {
+
+            color: #f59e0b;
+
+            font-size: 18px;
+
+            letter-spacing: 1px;
+        }
+
+
+        .review-comment {
+
+            color: #64748b;
+
+            line-height: 1.6;
+
+            font-size: 15px;
+        }
+
+
+        .review-date {
+
+            margin-top: 10px;
+
+            color: #94a3b8;
+
+            font-size: 12px;
+        }
+
+
+        .no-reviews {
+
+            text-align: center;
+
+            padding: 30px;
+
+            background: #f8fafc;
+
+            border-radius: 10px;
+
+            color: #64748b;
+        }
+
+
+        /* =====================================
+           MOBILE
+        ===================================== */
+
+        @media (max-width: 700px) {
+
+            header {
+
+                padding: 15px 20px;
+
+                gap: 15px;
+            }
+
+
+            header h1 {
+                font-size: 19px;
+            }
+
+
+            .back {
+
+                padding: 8px 12px;
+
+                font-size: 12px;
+            }
+
+
+            .container {
+
+                margin: 25px auto;
+
+                padding: 0 14px;
+            }
+
+
+            .product-detail {
+
+                grid-template-columns:
+                    1fr;
+
+                gap: 25px;
+
+                padding: 20px;
+            }
+
+
+            .product-image {
+                height: 300px;
+            }
+
+
+            .details h2 {
+                font-size: 29px;
+            }
+
+
+            .price {
+                font-size: 27px;
+            }
+
+
+            .reviews-section {
+
+                padding: 20px;
+            }
+
+
+            .review-top {
+
+                align-items: flex-start;
+
+                flex-direction: column;
+
+                gap: 7px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================
+     HEADER
+===================================== -->
+
+<header>
+
+    <h1>
+        🛒 CodeAlpha Store
+    </h1>
+
+
+    <a
+        href="{% url 'home' %}"
+        class="back"
+    >
+        ← Back to Store
+    </a>
+
+</header>
+
+
+<!-- =====================================
+     MAIN
+===================================== -->
+
+<div class="container">
+
+
+    <!-- PRODUCT DETAIL -->
+
+    <div class="product-detail">
+
+
+        <!-- IMAGE -->
+
+        <div class="product-image">
+
+            {% if product.image %}
+
+                <img
+                    src="{{ product.image }}"
+                    alt="{{ product.name }}"
+                >
+
+            {% else %}
+
+                <div class="no-image">
+                    🛍️
+                </div>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- DETAILS -->
+
+        <div class="details">
+
+
+            <h2>
+                {{ product.name }}
+            </h2>
+
+
+            <!-- RATING -->
+
+            <div class="rating-summary">
+
+                <div class="stars">
+                    ★★★★★
+                </div>
+
+
+                <div>
+
+                    <div class="rating-text">
+
+                        {{ average_rating|floatformat:1 }}
+                        / 5
+
+                    </div>
+
+
+                    <div class="review-count">
+
+                        {{ total_reviews }}
+                        review{{ total_reviews|pluralize }}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- DESCRIPTION -->
+
+            <p class="description">
+
+                {{ product.description }}
+
+            </p>
+
+
+            <!-- PRICE -->
+
+            <div class="price">
+
+                ₹{{ product.price }}
+
+            </div>
+
+
+            <!-- STOCK -->
+
+            {% if product.stock > 5 %}
+
+                <div class="stock in-stock">
+
+                    🟢 In Stock —
+                    {{ product.stock }}
+                    available
+
+                </div>
+
+            {% elif product.stock > 0 %}
+
+                <div class="stock low-stock">
+
+                    ⚠️ Low Stock —
+                    Only {{ product.stock }}
+                    left
+
+                </div>
+
+            {% else %}
+
+                <div class="stock out-stock">
+
+                    🔴 Out of Stock
+
+                </div>
+
+            {% endif %}
+
+
+            <!-- ADD TO CART -->
+
+            {% if product.stock > 0 %}
+
+                <a
+                    href="{% url 'add_to_cart' product.id %}"
+                    class="add-cart"
+                >
+                    🛒 Add to Cart
+                </a>
+
+            {% endif %}
+
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================
+         REVIEWS
+    ===================================== -->
+
+    <div class="reviews-section">
+
+
+        <h2 class="reviews-title">
+
+            Customer Reviews
+
+        </h2>
+
+
+        <!-- REVIEW FORM -->
+
+        <form
+            method="POST"
+            action="{% url 'add_review' product.id %}"
+            class="review-form"
+        >
+
+            {% csrf_token %}
+
+
+            <h3>
+                Write a Review
+            </h3>
+
+
+            <div class="form-group">
+
+                <label>
+                    Your Name
+                </label>
+
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="Enter your name"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Rating
+                </label>
+
+                <select
+                    name="rating"
+                    required
+                >
+
+                    <option value="">
+                        Select Rating
+                    </option>
+
+                    <option value="5">
+                        ⭐⭐⭐⭐⭐ Excellent
+                    </option>
+
+                    <option value="4">
+                        ⭐⭐⭐⭐ Very Good
+                    </option>
+
+                    <option value="3">
+                        ⭐⭐⭐ Good
+                    </option>
+
+                    <option value="2">
+                        ⭐⭐ Fair
+                    </option>
+
+                    <option value="1">
+                        ⭐ Poor
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Your Review
+                </label>
+
+                <textarea
+                    name="comment"
+                    placeholder="Share your experience with this product..."
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="submit-review"
+            >
+
+                Submit Review
+
+            </button>
+
+
+        </form>
+
+
+        <!-- REVIEW LIST -->
+
+        {% if reviews %}
+
+
+            {% for review in reviews %}
+
+                <div class="review-card">
+
+
+                    <div class="review-top">
+
+
+                        <div class="review-name">
+
+                            {{ review.name }}
+
+                        </div>
+
+
+                        <div class="review-stars">
+
+                            {% if review.rating == 5 %}
+                                ★★★★★
+
+                            {% elif review.rating == 4 %}
+                                ★★★★
+
+                            {% elif review.rating == 3 %}
+                                ★★★
+
+                            {% elif review.rating == 2 %}
+                                ★★
+
+                            {% else %}
+                                ★
+                            {% endif %}
+
+                        </div>
+
+
+                    </div>
+
+
+                    <p class="review-comment">
+
+                        {{ review.comment }}
+
+                    </p>
+
+
+                    <div class="review-date">
+
+                        {{ review.created_at|date:"d M Y" }}
+
+                    </div>
+
+
+                </div>
+
+            {% endfor %}
+
+
+        {% else %}
+
+
+            <div class="no-reviews">
+
+                No reviews yet.
+
+                Be the first person to review
+                this product! ⭐
+
+            </div>
+
+
+        {% endif %}
+
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>

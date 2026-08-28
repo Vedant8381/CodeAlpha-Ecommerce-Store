@@ -1,0 +1,47 @@
+{% extends "admin/base.html" %}
+
+{% load static %}
+
+{% block title %}
+CodeAlpha Store Admin
+{% endblock %}
+
+
+{% block extrastyle %}
+
+<link
+    rel="stylesheet"
+    href="{% static 'products/admin.css' %}"
+>
+
+{% endblock %}
+
+
+{% block branding %}
+
+<div id="site-name">
+
+    <a href="{% url 'admin:index' %}">
+        🛒 CodeAlpha Store
+    </a>
+
+</div>
+
+{% endblock %}
+
+
+{% block nav-global %}
+
+<div id="nav-global">
+
+    <a href="{% url 'admin_dashboard' %}">
+        📊 Dashboard
+    </a>
+
+    <a href="{% url 'home' %}">
+        🏪 View Store
+    </a>
+
+</div>
+
+{% endblock %}

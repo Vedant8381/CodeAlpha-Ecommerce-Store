@@ -1,0 +1,749 @@
+/* =========================================================
+   CODEALPHA STORE
+   FINAL PROFESSIONAL DJANGO ADMIN THEME
+   ========================================================= */
+
+
+/* =========================================================
+   ROOT VARIABLES
+   ========================================================= */
+
+:root {
+    --navy: #0f172a;
+    --navy-light: #1e293b;
+
+    --teal: #0f766e;
+    --teal-hover: #115e59;
+    --teal-light: #14b8a6;
+
+    --bg: #f4f7fb;
+    --white: #ffffff;
+
+    --text: #172033;
+    --muted: #64748b;
+
+    --border: #e2e8f0;
+
+    --green: #16a34a;
+    --green-bg: #ecfdf5;
+    --green-border: #bbf7d0;
+
+    --gold: #b77900;
+    --gold-bg: #fff8e6;
+    --gold-border: #f5df9a;
+
+    --shadow: 0 8px 24px rgba(15, 23, 42, 0.07);
+}
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+html,
+body {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   BODY
+   ========================================================= */
+
+body {
+    background: var(--bg) !important;
+    color: var(--text) !important;
+
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif !important;
+
+    font-size: 14px !important;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+#header {
+    min-height: 72px !important;
+
+    padding: 0 42px !important;
+
+    background: var(--navy) !important;
+    color: #ffffff !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+
+    gap: 30px !important;
+
+    border-bottom: 1px solid #1e293b !important;
+}
+
+
+/* =========================================================
+   SITE NAME
+   ========================================================= */
+
+#site-name {
+    margin: 0 !important;
+    padding: 0 !important;
+
+    display: flex !important;
+    align-items: center !important;
+}
+
+#site-name a {
+    color: #ffffff !important;
+
+    font-size: 24px !important;
+    font-weight: 700 !important;
+
+    letter-spacing: -0.5px !important;
+
+    text-decoration: none !important;
+
+    white-space: nowrap !important;
+}
+
+#site-name a:hover {
+    color: #ffffff !important;
+}
+
+
+/* =========================================================
+   USER TOOLS
+   ========================================================= */
+
+#user-tools {
+    margin: 0 !important;
+    padding: 0 !important;
+
+    display: flex !important;
+    align-items: center !important;
+
+    gap: 16px !important;
+
+    color: #cbd5e1 !important;
+
+    font-size: 12px !important;
+
+    white-space: nowrap !important;
+}
+
+#user-tools a {
+    color: #e2e8f0 !important;
+
+    text-decoration: none !important;
+
+    margin: 0 !important;
+
+    padding: 0 !important;
+
+    transition: color 0.15s ease !important;
+}
+
+#user-tools a:hover {
+    color: #ffffff !important;
+}
+
+
+/* =========================================================
+   BREADCRUMBS
+   ========================================================= */
+
+div.breadcrumbs {
+    background: var(--navy-light) !important;
+
+    color: #cbd5e1 !important;
+
+    padding: 12px 42px !important;
+
+    font-size: 13px !important;
+}
+
+div.breadcrumbs a {
+    color: #ffffff !important;
+
+    text-decoration: none !important;
+}
+
+div.breadcrumbs a:hover {
+    text-decoration: underline !important;
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+   ========================================================= */
+
+#content {
+    width: 100% !important;
+
+    max-width: 1500px !important;
+
+    margin: 0 auto !important;
+
+    padding: 38px 46px 55px !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* =========================================================
+   SITE ADMINISTRATION HEADING
+   ========================================================= */
+
+#content h1 {
+    margin: 0 0 30px 0 !important;
+
+    padding: 0 !important;
+
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif !important;
+
+    font-size: 34px !important;
+
+    line-height: 1.2 !important;
+
+    font-weight: 700 !important;
+
+    letter-spacing: -0.7px !important;
+
+    color: var(--navy) !important;
+}
+
+
+/* =========================================================
+   REMOVE RECENT ACTIONS
+   ========================================================= */
+
+#content-related {
+    display: none !important;
+}
+
+
+/* =========================================================
+   FULL WIDTH ADMIN AREA
+   ========================================================= */
+
+#content-main {
+    width: 100% !important;
+
+    max-width: 100% !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    float: none !important;
+}
+
+
+/* =========================================================
+   ADMIN MODULE CARD
+   ========================================================= */
+
+#content-main .module {
+    width: 100% !important;
+
+    margin: 0 0 26px !important;
+
+    padding: 0 !important;
+
+    background: var(--white) !important;
+
+    border: 1px solid var(--border) !important;
+
+    border-radius: 14px !important;
+
+    overflow: hidden !important;
+
+    box-shadow: var(--shadow) !important;
+}
+
+
+/* =========================================================
+   MODULE TITLE
+   ========================================================= */
+
+#content-main .module h2 {
+    margin: 0 !important;
+
+    padding: 17px 22px !important;
+
+    background: var(--navy) !important;
+
+    color: #ffffff !important;
+
+    font-size: 15px !important;
+
+    font-weight: 650 !important;
+
+    letter-spacing: 0.4px !important;
+
+    text-transform: uppercase !important;
+}
+
+
+/* =========================================================
+   ADMIN TABLE
+   ========================================================= */
+
+#content-main .module table {
+    width: 100% !important;
+
+    border-collapse: collapse !important;
+
+    border-spacing: 0 !important;
+}
+
+
+/* =========================================================
+   TABLE ROWS
+   ========================================================= */
+
+#content-main .module tr {
+    height: 56px !important;
+
+    background: #ffffff !important;
+
+    transition:
+        background 0.15s ease !important;
+}
+
+#content-main .module tr:nth-child(even) {
+    background: #f8fafc !important;
+}
+
+#content-main .module tr:hover {
+    background: #f0fdfa !important;
+}
+
+
+/* =========================================================
+   TABLE CELLS
+   ========================================================= */
+
+#content-main .module th,
+#content-main .module td {
+    padding: 13px 22px !important;
+
+    border-bottom: 1px solid var(--border) !important;
+
+    vertical-align: middle !important;
+}
+
+#content-main .module tr:last-child th,
+#content-main .module tr:last-child td {
+    border-bottom: none !important;
+}
+
+
+/* =========================================================
+   MODEL NAME
+   ========================================================= */
+
+#content-main .module th {
+    width: auto !important;
+
+    text-align: left !important;
+}
+
+#content-main .module th a {
+    color: var(--teal) !important;
+
+    font-size: 14px !important;
+
+    font-weight: 650 !important;
+
+    text-decoration: none !important;
+}
+
+#content-main .module th a:hover {
+    color: var(--teal-hover) !important;
+}
+
+
+/* =========================================================
+   ACTION COLUMN
+   ========================================================= */
+
+#content-main .module td {
+    width: 1% !important;
+
+    text-align: right !important;
+
+    white-space: nowrap !important;
+}
+
+
+/* =========================================================
+   ADD BUTTON
+   ========================================================= */
+
+#content-main .module .addlink {
+    display: inline-flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    min-width: 76px !important;
+
+    height: 36px !important;
+
+    padding: 0 15px !important;
+
+    margin-right: 10px !important;
+
+    background: var(--green-bg) !important;
+
+    color: var(--green) !important;
+
+    border: 1px solid var(--green-border) !important;
+
+    border-radius: 8px !important;
+
+    font-size: 13px !important;
+
+    font-weight: 650 !important;
+
+    text-decoration: none !important;
+
+    transition: all 0.15s ease !important;
+}
+
+#content-main .module .addlink:hover {
+    background: #dcfce7 !important;
+
+    color: #15803d !important;
+
+    transform: translateY(-1px) !important;
+}
+
+
+/* =========================================================
+   CHANGE BUTTON
+   ========================================================= */
+
+#content-main .module .changelink {
+    display: inline-flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    min-width: 88px !important;
+
+    height: 36px !important;
+
+    padding: 0 15px !important;
+
+    background: var(--gold-bg) !important;
+
+    color: var(--gold) !important;
+
+    border: 1px solid var(--gold-border) !important;
+
+    border-radius: 8px !important;
+
+    font-size: 13px !important;
+
+    font-weight: 650 !important;
+
+    text-decoration: none !important;
+
+    transition: all 0.15s ease !important;
+}
+
+#content-main .module .changelink:hover {
+    background: #fff1c7 !important;
+
+    color: #8a6500 !important;
+
+    transform: translateY(-1px) !important;
+}
+
+
+/* =========================================================
+   OBJECT TOOLS
+   ========================================================= */
+
+.object-tools {
+    margin: 0 0 18px !important;
+}
+
+.object-tools a {
+    background: var(--teal) !important;
+
+    color: #ffffff !important;
+
+    border-radius: 8px !important;
+
+    padding: 9px 15px !important;
+
+    font-weight: 600 !important;
+
+    text-decoration: none !important;
+}
+
+.object-tools a:hover {
+    background: var(--teal-hover) !important;
+}
+
+
+/* =========================================================
+   NORMAL BUTTONS
+   ========================================================= */
+
+.button,
+input[type="submit"],
+input[type="button"],
+.submit-row input,
+a.button {
+    background: var(--navy) !important;
+
+    color: #ffffff !important;
+
+    border: none !important;
+
+    border-radius: 8px !important;
+
+    padding: 10px 17px !important;
+
+    font-weight: 600 !important;
+
+    cursor: pointer !important;
+
+    transition:
+        background 0.15s ease,
+        transform 0.15s ease !important;
+}
+
+.button:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover,
+.submit-row input:hover,
+a.button:hover {
+    background: var(--navy-light) !important;
+
+    transform: translateY(-1px) !important;
+}
+
+
+/* =========================================================
+   INPUTS
+   ========================================================= */
+
+input,
+textarea,
+select {
+    border: 1px solid var(--border) !important;
+
+    border-radius: 7px !important;
+
+    padding: 9px 11px !important;
+
+    background: #ffffff !important;
+
+    color: var(--text) !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--teal-light) !important;
+
+    outline: none !important;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(20, 184, 166, 0.12) !important;
+}
+
+
+/* =========================================================
+   CHANGE LIST PAGE
+   ========================================================= */
+
+#changelist {
+    background: #ffffff !important;
+
+    border-radius: 12px !important;
+
+    overflow: hidden !important;
+
+    border: 1px solid var(--border) !important;
+
+    box-shadow: var(--shadow) !important;
+}
+
+#changelist-filter {
+    background: #f8fafc !important;
+
+    border-left: 1px solid var(--border) !important;
+}
+
+
+/* =========================================================
+   MESSAGES
+   ========================================================= */
+
+.messagelist {
+    margin-bottom: 18px !important;
+}
+
+.messagelist li {
+    border-radius: 8px !important;
+
+    padding: 12px 16px !important;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+#footer {
+    display: none !important;
+}
+
+
+/* =========================================================
+   DESKTOP
+   ========================================================= */
+
+@media (min-width: 1200px) {
+
+    #content-main .module {
+        margin-bottom: 26px !important;
+    }
+
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+    #header {
+        padding: 0 24px !important;
+    }
+
+    div.breadcrumbs {
+        padding: 12px 24px !important;
+    }
+
+    #content {
+        padding: 30px 24px 45px !important;
+    }
+
+    #content h1 {
+        font-size: 31px !important;
+    }
+
+    #user-tools {
+        gap: 12px !important;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    #header {
+        min-height: auto !important;
+
+        padding: 16px 18px !important;
+
+        flex-direction: column !important;
+
+        align-items: flex-start !important;
+
+        gap: 14px !important;
+    }
+
+    #site-name a {
+        font-size: 21px !important;
+    }
+
+    #user-tools {
+        width: 100% !important;
+
+        justify-content: flex-start !important;
+
+        flex-wrap: wrap !important;
+
+        gap: 10px !important;
+
+        white-space: normal !important;
+    }
+
+    div.breadcrumbs {
+        padding: 10px 18px !important;
+    }
+
+    #content {
+        padding: 25px 15px 35px !important;
+    }
+
+    #content h1 {
+        font-size: 27px !important;
+
+        margin-bottom: 24px !important;
+    }
+
+    #content-main .module {
+        margin-bottom: 20px !important;
+
+        border-radius: 12px !important;
+    }
+
+    #content-main .module h2 {
+        padding: 15px 17px !important;
+
+        font-size: 14px !important;
+    }
+
+    #content-main .module th,
+    #content-main .module td {
+        padding: 11px 13px !important;
+    }
+
+    #content-main .module .addlink,
+    #content-main .module .changelink {
+        min-width: auto !important;
+
+        height: 32px !important;
+
+        padding: 0 10px !important;
+
+        font-size: 12px !important;
+    }
+
+    #content-main .module .addlink {
+        margin-right: 6px !important;
+    }
+
+}
