@@ -104,4 +104,3 @@ CodeAlpha_EcommerceStore/
 │   └── urls.py
 │
 ├── manage.py
-└── README.md

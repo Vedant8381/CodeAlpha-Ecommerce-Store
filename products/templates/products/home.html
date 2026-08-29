@@ -225,7 +225,7 @@
 
 
         /* =========================
-           SEARCH BOX
+           SEARCH
         ========================= */
 
         .search-wrapper {
@@ -476,11 +476,14 @@
                 );
 
             gap: 25px;
+
+            align-items: stretch;
         }
 
 
         /* =========================
            PRODUCT CARD
+           FIXED ALIGNMENT
         ========================= */
 
         .product-card {
@@ -500,6 +503,12 @@
             position: relative;
 
             overflow: hidden;
+
+            /* IMPORTANT FIX */
+            display: flex;
+            flex-direction: column;
+
+            height: 100%;
         }
 
 
@@ -533,6 +542,8 @@
             margin-bottom: 18px;
 
             position: relative;
+
+            flex-shrink: 0;
         }
 
 
@@ -547,8 +558,7 @@
         }
 
 
-        .product-card:hover
-        .product-image img {
+        .product-card:hover .product-image img {
             transform: scale(1.05);
         }
 
@@ -607,7 +617,7 @@
 
 
         /* =========================
-           CATEGORY BADGE
+           CATEGORY
         ========================= */
 
         .category-badge {
@@ -626,17 +636,21 @@
             font-weight: bold;
 
             margin-bottom: 8px;
+
+            align-self: flex-start;
         }
 
 
         /* =========================
-           PRODUCT INFO
+           PRODUCT NAME
         ========================= */
 
         .product-name {
             font-size: 20px;
 
             margin-bottom: 8px;
+
+            min-height: 24px;
         }
 
 
@@ -652,6 +666,11 @@
         }
 
 
+        /* =========================
+           DESCRIPTION
+           FIXED HEIGHT
+        ========================= */
+
         .description {
             color: #6b7280;
 
@@ -659,11 +678,23 @@
 
             font-size: 14px;
 
-            min-height: 43px;
+            /*
+            IMPORTANT FIX:
+            Description ki length alag hone par
+            buttons ki position same rahegi
+            */
+
+            min-height: 126px;
 
             margin-bottom: 12px;
+
+            overflow: hidden;
         }
 
+
+        /* =========================
+           PRICE + STOCK
+        ========================= */
 
         .price-row {
             display: flex;
@@ -673,6 +704,8 @@
             align-items: center;
 
             margin-top: 12px;
+
+            min-height: 35px;
         }
 
 
@@ -700,6 +733,27 @@
             font-size: 13px;
 
             font-weight: bold;
+        }
+
+
+        /* =========================
+           CART LINK
+           BUTTON ALIGNMENT FIX
+        ========================= */
+
+        .cart-link {
+            text-decoration: none;
+
+            display: block;
+
+            width: 100%;
+
+            /*
+            Pushes button to same position
+            in all product cards
+            */
+
+            margin-top: auto;
         }
 
 
@@ -748,8 +802,10 @@
         }
 
 
-        .cart-link {
-            text-decoration: none;
+        /* OUT OF STOCK BUTTON ALIGNMENT */
+
+        .product-card > .add-cart {
+            margin-top: auto;
         }
 
 
@@ -777,6 +833,8 @@
             margin-top: 10px;
 
             transition: 0.2s;
+
+            min-height: 43px;
         }
 
 
@@ -1023,6 +1081,11 @@
                 grid-template-columns: 1fr;
             }
 
+
+            .description {
+                min-height: auto;
+            }
+
         }
 
 
@@ -1048,15 +1111,11 @@
 <body>
 
 
-<!-- =========================
-     HEADER
-========================= -->
+<!-- HEADER -->
 
 <header>
 
-
     <div class="logo">
-
 
         <div class="logo-icon">
             🛒
@@ -1069,19 +1128,18 @@
                 CodeAlpha Store
             </h1>
 
+
             <span>
                 Smart & Simple Shopping
             </span>
 
         </div>
 
-
     </div>
 
 
 
     <div class="header-buttons">
-
 
         <a
             href="{% url 'my_orders' %}"
@@ -1106,20 +1164,14 @@
             🛒 Cart: {{ cart_count }}
         </a>
 
-
     </div>
-
 
 </header>
 
 
-
-<!-- =========================
-     HERO
-========================= -->
+<!-- HERO -->
 
 <section class="hero">
-
 
     <div class="hero-badge">
         ✨ Welcome to CodeAlpha Store
@@ -1155,14 +1207,10 @@
 
     </div>
 
-
 </section>
 
 
-
-<!-- =========================
-     MAIN
-========================= -->
+<!-- MAIN -->
 
 <main
     class="main"
@@ -1170,12 +1218,9 @@
 >
 
 
-    <!-- =========================
-         SEARCH
-    ========================= -->
+    <!-- SEARCH -->
 
     <div class="search-wrapper">
-
 
         <div class="search-title">
             🔎 Search Products
@@ -1188,7 +1233,6 @@
             class="search-form"
         >
 
-
             <input
                 type="text"
                 name="search"
@@ -1200,7 +1244,6 @@
             <button type="submit">
                 🔍 Search
             </button>
-
 
         </form>
 
@@ -1216,17 +1259,12 @@
 
         {% endif %}
 
-
     </div>
 
 
-
-    <!-- =========================
-         FILTERS
-    ========================= -->
+    <!-- FILTERS -->
 
     <div class="filter-box">
-
 
         <div class="filter-title">
             🎯 Filter & Sort Products
@@ -1238,7 +1276,6 @@
             action="{% url 'home' %}"
         >
 
-
             <input
                 type="hidden"
                 name="search"
@@ -1248,8 +1285,6 @@
 
             <div class="filter-grid">
 
-
-                <!-- CATEGORY -->
 
                 <select name="category">
 
@@ -1273,12 +1308,8 @@
 
                     {% endfor %}
 
-
                 </select>
 
-
-
-                <!-- MIN PRICE -->
 
                 <input
                     type="number"
@@ -1289,9 +1320,6 @@
                 >
 
 
-
-                <!-- MAX PRICE -->
-
                 <input
                     type="number"
                     name="max_price"
@@ -1301,11 +1329,7 @@
                 >
 
 
-
-                <!-- SORT -->
-
                 <select name="sort">
-
 
                     <option value="">
                         ↕️ Sort By
@@ -1351,12 +1375,8 @@
                         Name: Z → A
                     </option>
 
-
                 </select>
 
-
-
-                <!-- APPLY -->
 
                 <button
                     type="submit"
@@ -1366,9 +1386,6 @@
                 </button>
 
 
-
-                <!-- CLEAR -->
-
                 <a
                     href="{% url 'home' %}"
                     class="clear-filter"
@@ -1376,23 +1393,16 @@
                     ✕ Clear
                 </a>
 
-
             </div>
 
-
         </form>
-
 
     </div>
 
 
-
-    <!-- =========================
-         SECTION HEADER
-    ========================= -->
+    <!-- SECTION HEADER -->
 
     <div class="section-header">
-
 
         <h2>
             🛍️ Our Products
@@ -1400,7 +1410,6 @@
 
 
         <div class="product-count">
-
 
             {% if search_query %}
 
@@ -1410,6 +1419,7 @@
                     "{{ search_query }}"
                 </strong>
 
+
             {% elif selected_category %}
 
                 Category:
@@ -1418,29 +1428,23 @@
                     {{ selected_category }}
                 </strong>
 
+
             {% else %}
 
                 Fresh products for you
 
             {% endif %}
 
-
         </div>
-
 
     </div>
 
 
-
-    <!-- =========================
-         PRODUCT GRID
-    ========================= -->
+    <!-- PRODUCT GRID -->
 
     <div class="product-grid">
 
-
         {% for product in products %}
-
 
             <div class="product-card">
 
@@ -1448,7 +1452,6 @@
                 <!-- PRODUCT IMAGE -->
 
                 <div class="product-image">
-
 
                     {% if product.image %}
 
@@ -1466,11 +1469,9 @@
                     {% endif %}
 
 
-
                     <!-- WISHLIST HEART -->
 
                     {% if product.id in wishlist_ids %}
-
 
                         <a
                             href="{% url 'remove_from_wishlist' product.id %}"
@@ -1480,9 +1481,7 @@
                             ❤️
                         </a>
 
-
                     {% else %}
-
 
                         <a
                             href="{% url 'add_to_wishlist' product.id %}"
@@ -1492,12 +1491,9 @@
                             ♡
                         </a>
 
-
                     {% endif %}
 
-
                 </div>
-
 
 
                 <!-- CATEGORY -->
@@ -1509,11 +1505,9 @@
                 </div>
 
 
-
                 <!-- NAME -->
 
                 <h3 class="product-name">
-
 
                     <a
                         href="{% url 'product_detail' product.id %}"
@@ -1523,9 +1517,7 @@
 
                     </a>
 
-
                 </h3>
-
 
 
                 <!-- DESCRIPTION -->
@@ -1537,11 +1529,9 @@
                 </p>
 
 
-
                 <!-- PRICE + STOCK -->
 
                 <div class="price-row">
-
 
                     <div class="price">
 
@@ -1552,16 +1542,13 @@
 
                     {% if product.stock > 0 %}
 
-
                         <div class="stock">
 
                             ✓ {{ product.stock }} left
 
                         </div>
 
-
                     {% else %}
-
 
                         <div class="out-of-stock">
 
@@ -1569,18 +1556,14 @@
 
                         </div>
 
-
                     {% endif %}
 
-
                 </div>
-
 
 
                 <!-- ADD TO CART -->
 
                 {% if product.stock > 0 %}
-
 
                     <a
                         href="{% url 'add_to_cart' product.id %}"
@@ -1598,9 +1581,7 @@
 
                     </a>
 
-
                 {% else %}
-
 
                     <button
                         type="button"
@@ -1612,15 +1593,12 @@
 
                     </button>
 
-
                 {% endif %}
-
 
 
                 <!-- WISHLIST BUTTON -->
 
                 {% if product.id in wishlist_ids %}
-
 
                     <a
                         href="{% url 'remove_from_wishlist' product.id %}"
@@ -1631,9 +1609,7 @@
 
                     </a>
 
-
                 {% else %}
-
 
                     <a
                         href="{% url 'add_to_wishlist' product.id %}"
@@ -1644,12 +1620,9 @@
 
                     </a>
 
-
                 {% endif %}
 
-
             </div>
-
 
         {% empty %}
 
@@ -1658,14 +1631,12 @@
 
             <div class="no-products">
 
-
                 <div class="no-products-icon">
                     🔍
                 </div>
 
 
                 {% if search_query %}
-
 
                     <h3>
                         No Products Found
@@ -1697,7 +1668,6 @@
 
                 {% elif selected_category %}
 
-
                     <h3>
                         No Products in This Category
                     </h3>
@@ -1727,7 +1697,6 @@
 
                 {% else %}
 
-
                     <h3>
                         No Products Available
                     </h3>
@@ -1737,29 +1706,20 @@
                         Products will appear here soon.
                     </p>
 
-
                 {% endif %}
-
 
             </div>
 
-
         {% endfor %}
-
 
     </div>
 
 
-
-    <!-- =========================
-         FEATURES
-    ========================= -->
+    <!-- FEATURES -->
 
     <div class="features">
 
-
         <div class="feature">
-
 
             <div class="feature-icon">
                 🚚
@@ -1779,13 +1739,10 @@
 
             </p>
 
-
         </div>
 
 
-
         <div class="feature">
-
 
             <div class="feature-icon">
                 ❤️
@@ -1805,13 +1762,10 @@
 
             </p>
 
-
         </div>
 
 
-
         <div class="feature">
-
 
             <div class="feature-icon">
                 📦
@@ -1830,23 +1784,16 @@
 
             </p>
 
-
         </div>
 
-
     </div>
-
 
 </main>
 
 
-
-<!-- =========================
-     FOOTER
-========================= -->
+<!-- FOOTER -->
 
 <footer>
-
 
     <h3>
         🛒 CodeAlpha Store
@@ -1861,7 +1808,6 @@
     <p>
         © 2026 CodeAlpha Store. All Rights Reserved.
     </p>
-
 
 </footer>
 

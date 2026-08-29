@@ -1,5 +1,7 @@
-from django.contrib import admin  # type: ignore[reportMissingModuleSource]
-from django.urls import path  # type: ignore[reportMissingModuleSource]
+from django.contrib import admin  # pyright: ignore[reportMissingModuleSource]
+from django.urls import path  # pyright: ignore[reportMissingModuleSource]
+from django.conf import settings  # pyright: ignore[reportMissingModuleSource]
+from django.conf.urls.static import static  # pyright: ignore[reportMissingModuleSource]
 
 from products import views
 
@@ -148,3 +150,14 @@ urlpatterns = [
     ),
 
 ]
+
+
+# ==========================================
+# MEDIA FILES - PRODUCT IMAGES
+# ==========================================
+
+if settings.DEBUG:
+    urlpatterns += static(
+        settings.MEDIA_URL,
+        document_root=settings.MEDIA_ROOT
+    )

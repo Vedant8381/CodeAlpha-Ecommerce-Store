@@ -35,9 +35,9 @@
         }
 
 
-        /* =====================================
+        /* =========================
            HEADER
-        ===================================== */
+        ========================= */
 
         header {
 
@@ -80,18 +80,23 @@
             font-size: 14px;
 
             transition:
-                background 0.2s ease;
+                background 0.2s ease,
+                transform 0.2s ease;
         }
 
 
         .back:hover {
+
             background: #4b5563;
+
+            transform:
+                translateY(-1px);
         }
 
 
-        /* =====================================
+        /* =========================
            MAIN CONTAINER
-        ===================================== */
+        ========================= */
 
         .container {
 
@@ -103,9 +108,9 @@
         }
 
 
-        /* =====================================
+        /* =========================
            PRODUCT DETAIL
-        ===================================== */
+        ========================= */
 
         .product-detail {
 
@@ -130,9 +135,9 @@
         }
 
 
-        /* =====================================
+        /* =========================
            PRODUCT IMAGE
-        ===================================== */
+        ========================= */
 
         .product-image {
 
@@ -167,9 +172,9 @@
         }
 
 
-        /* =====================================
+        /* =========================
            PRODUCT DETAILS
-        ===================================== */
+        ========================= */
 
         .details {
             padding: 10px 0;
@@ -212,9 +217,9 @@
         }
 
 
-        /* =====================================
+        /* =========================
            RATING SUMMARY
-        ===================================== */
+        ========================= */
 
         .rating-summary {
 
@@ -230,7 +235,9 @@
 
             background: #fffbeb;
 
-            border: 1px solid #fde68a;
+            border:
+                1px solid
+                #fde68a;
 
             border-radius: 10px;
         }
@@ -261,12 +268,14 @@
             color: #6b7280;
 
             font-size: 14px;
+
+            margin-top: 3px;
         }
 
 
-        /* =====================================
+        /* =========================
            STOCK
-        ===================================== */
+        ========================= */
 
         .stock {
 
@@ -308,9 +317,9 @@
         }
 
 
-        /* =====================================
+        /* =========================
            ADD TO CART
-        ===================================== */
+        ========================= */
 
         .add-cart {
 
@@ -353,9 +362,9 @@
         }
 
 
-        /* =====================================
+        /* =========================
            REVIEWS SECTION
-        ===================================== */
+        ========================= */
 
         .reviews-section {
 
@@ -383,9 +392,9 @@
         }
 
 
-        /* =====================================
+        /* =========================
            REVIEW FORM
-        ===================================== */
+        ========================= */
 
         .review-form {
 
@@ -471,12 +480,7 @@
 
             box-shadow:
                 0 0 0 3px
-                rgba(
-                    17,
-                    24,
-                    39,
-                    0.08
-                );
+                rgba(17, 24, 39, 0.08);
         }
 
 
@@ -497,17 +501,25 @@
             font-weight: 600;
 
             cursor: pointer;
+
+            transition:
+                background 0.2s ease,
+                transform 0.2s ease;
         }
 
 
         .submit-review:hover {
+
             background: #115e59;
+
+            transform:
+                translateY(-1px);
         }
 
 
-        /* =====================================
+        /* =========================
            REVIEW CARD
-        ===================================== */
+        ========================= */
 
         .review-card {
 
@@ -520,6 +532,7 @@
 
 
         .review-card:last-child {
+
             border-bottom: none;
         }
 
@@ -590,9 +603,9 @@
         }
 
 
-        /* =====================================
+        /* =========================
            MOBILE
-        ===================================== */
+        ========================= */
 
         @media (max-width: 700px) {
 
@@ -637,16 +650,19 @@
 
 
             .product-image {
+
                 height: 300px;
             }
 
 
             .details h2 {
+
                 font-size: 29px;
             }
 
 
             .price {
+
                 font-size: 27px;
             }
 
@@ -665,6 +681,7 @@
 
                 gap: 7px;
             }
+
         }
 
     </style>
@@ -675,9 +692,9 @@
 <body>
 
 
-<!-- =====================================
+<!-- =========================
      HEADER
-===================================== -->
+========================= -->
 
 <header>
 
@@ -696,9 +713,9 @@
 </header>
 
 
-<!-- =====================================
-     MAIN
-===================================== -->
+<!-- =========================
+     MAIN CONTENT
+========================= -->
 
 <div class="container">
 
@@ -708,7 +725,7 @@
     <div class="product-detail">
 
 
-        <!-- IMAGE -->
+        <!-- PRODUCT IMAGE -->
 
         <div class="product-image">
 
@@ -730,7 +747,7 @@
         </div>
 
 
-        <!-- DETAILS -->
+        <!-- PRODUCT DETAILS -->
 
         <div class="details">
 
@@ -744,8 +761,29 @@
 
             <div class="rating-summary">
 
+
                 <div class="stars">
-                    ★★★★★
+
+                    {% if average_rating >= 4.5 %}
+                        ★★★★★
+
+                    {% elif average_rating >= 3.5 %}
+                        ★★★★☆
+
+                    {% elif average_rating >= 2.5 %}
+                        ★★★☆☆
+
+                    {% elif average_rating >= 1.5 %}
+                        ★★☆☆☆
+
+                    {% elif average_rating >= 0.5 %}
+                        ★☆☆☆☆
+
+                    {% else %}
+                        ☆☆☆☆☆
+
+                    {% endif %}
+
                 </div>
 
 
@@ -768,6 +806,7 @@
 
                 </div>
 
+
             </div>
 
 
@@ -789,7 +828,7 @@
             </div>
 
 
-            <!-- STOCK -->
+            <!-- STOCK STATUS -->
 
             {% if product.stock > 5 %}
 
@@ -801,6 +840,7 @@
 
                 </div>
 
+
             {% elif product.stock > 0 %}
 
                 <div class="stock low-stock">
@@ -810,6 +850,7 @@
                     left
 
                 </div>
+
 
             {% else %}
 
@@ -826,11 +867,15 @@
 
             {% if product.stock > 0 %}
 
+                <br>
+
                 <a
                     href="{% url 'add_to_cart' product.id %}"
                     class="add-cart"
                 >
+
                     🛒 Add to Cart
+
                 </a>
 
             {% endif %}
@@ -838,12 +883,13 @@
 
         </div>
 
+
     </div>
 
 
-    <!-- =====================================
+    <!-- =========================
          REVIEWS
-    ===================================== -->
+    ========================= -->
 
     <div class="reviews-section">
 
@@ -871,11 +917,14 @@
             </h3>
 
 
+            <!-- NAME -->
+
             <div class="form-group">
 
                 <label>
                     Your Name
                 </label>
+
 
                 <input
                     type="text"
@@ -887,11 +936,14 @@
             </div>
 
 
+            <!-- RATING -->
+
             <div class="form-group">
 
                 <label>
                     Rating
                 </label>
+
 
                 <select
                     name="rating"
@@ -902,21 +954,26 @@
                         Select Rating
                     </option>
 
+
                     <option value="5">
                         ⭐⭐⭐⭐⭐ Excellent
                     </option>
+
 
                     <option value="4">
                         ⭐⭐⭐⭐ Very Good
                     </option>
 
+
                     <option value="3">
                         ⭐⭐⭐ Good
                     </option>
 
+
                     <option value="2">
                         ⭐⭐ Fair
                     </option>
+
 
                     <option value="1">
                         ⭐ Poor
@@ -927,11 +984,14 @@
             </div>
 
 
+            <!-- COMMENT -->
+
             <div class="form-group">
 
                 <label>
                     Your Review
                 </label>
+
 
                 <textarea
                     name="comment"
@@ -962,6 +1022,7 @@
 
             {% for review in reviews %}
 
+
                 <div class="review-card">
 
 
@@ -977,21 +1038,29 @@
 
                         <div class="review-stars">
 
+
                             {% if review.rating == 5 %}
+
                                 ★★★★★
 
                             {% elif review.rating == 4 %}
-                                ★★★★
+
+                                ★★★★☆
 
                             {% elif review.rating == 3 %}
-                                ★★★
+
+                                ★★★☆☆
 
                             {% elif review.rating == 2 %}
-                                ★★
+
+                                ★★☆☆☆
 
                             {% else %}
-                                ★
+
+                                ★☆☆☆☆
+
                             {% endif %}
+
 
                         </div>
 
@@ -1015,6 +1084,7 @@
 
                 </div>
 
+
             {% endfor %}
 
 
@@ -1024,6 +1094,8 @@
             <div class="no-reviews">
 
                 No reviews yet.
+
+                <br><br>
 
                 Be the first person to review
                 this product! ⭐
