@@ -186,9 +186,12 @@ class OrderItemInline(
     )
     def item_total(self, obj):
 
+        price = obj.price or 0
+        quantity = obj.quantity or 0
+
         return format_html(
             '<strong>₹{}</strong>',
-            obj.price * obj.quantity
+            price * quantity
         )
 
 
@@ -392,9 +395,12 @@ class CartItemAdmin(admin.ModelAdmin):
     )
     def cart_total(self, obj):
 
+        price = obj.product.price or 0
+        quantity = obj.quantity or 0
+
         return format_html(
             '<strong>₹{}</strong>',
-            obj.product.price * obj.quantity
+            price * quantity
         )
 
 
@@ -461,7 +467,10 @@ class OrderItemAdmin(admin.ModelAdmin):
     )
     def item_total(self, obj):
 
+        price = obj.price or 0
+        quantity = obj.quantity or 0
+
         return format_html(
             '<strong>₹{}</strong>',
-            obj.price * obj.quantity
+            price * quantity
         )
